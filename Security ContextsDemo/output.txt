@@ -1,0 +1,21 @@
+root@user ckaJ# kubectl apply -f security-context.yaml
+pod/security-context-demo created
+
+root@user ckaJ# kubectl get pods
+
+NAME 			READY   STATUS 	RESTARTS AGE
+security-context-demo   1/1 	Running 0	 8s
+root@user ckaJ#
+root@user ckaJ# kubectl exec -it security-context-demo -- sh
+/$ps
+PID USER TIME COMMAND
+  1 1000 @:0@ sleep 3600
+  6 1000 @:0@ sh
+  11 1600 0:08 ps
+/ $ cd /data
+/data $ 1s -1
+total 0
+drwxrwsrwx 2 root 2000 6 Jan 28 23:46 demo
+/data $ id
+uid=1000 gid=100@ groups=2000
+/data $ exit
